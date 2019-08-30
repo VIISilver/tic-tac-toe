@@ -1,0 +1,7 @@
+.cell-wrap {
+    display: inline;
+}
+
+.cell-wrap > button {
+    font-size: 7rem;
+}
