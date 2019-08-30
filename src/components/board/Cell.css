@@ -4,4 +4,5 @@
 
 .cell-wrap > button {
     font-size: 7rem;
+    cursor: pointer;
 }

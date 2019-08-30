@@ -4,21 +4,19 @@ import './Row.css'
 
 export default class Row extends Component {
 
+    cellArr = ['a', 'b', 'c']
 
     render() {
-
-        let cellArr = ['a', 'b', 'c']
 
         return (
             <div className='row-wrap'>
                 {/* <button>{this.props.boardVal}</button> */}
-                {cellArr.map((item, key) => (
+                {this.cellArr.map((item, key) => (
                     <Cell
                     key={key}
                     rowVal={`${item}${this.props.boardVal}`}
                     />
                 ))}
-                
             </div>
         )
     }
