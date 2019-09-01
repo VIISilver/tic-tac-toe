@@ -6,19 +6,27 @@ export default class Board extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            player1Turn: false,
-            moves: {
-                player1Moves: [],
-                player2Moves: []
-            }
+            player1Turn: true,
+            player1Moves: [],
+            player2Moves: []
         }
     }
 
     rowArr = [1, 2, 3]
 
-    handleOnMouseEnter = (e) => {
+    handleOnClick = (e) => {
         let square = e.target.id
-        console.log(this.state)
+        if (this.state.player1Turn) {
+            this.setState({
+                player1Turn: !this.state.player1Turn,
+                player1Moves: this.state.player1Moves.concat(square)
+            })
+        } else {
+            this.setState({
+                player1Turn: !this.state.player1Turn,
+                player2Moves: this.state.player2Moves.concat(square)
+            })
+        }
     }
 
     render() {
@@ -30,8 +38,9 @@ export default class Board extends Component {
                     <Row
                     key={key}
                     boardVal={item}
-                    hoverInfoBoard={this.handleOnMouseEnter}
-                    movesValuesBoard={this.state.moves}
+                    hoverInfoRow={this.handleOnClick}
+                    player1MovesRow={this.state.player1Moves}
+                    player2MovesRow={this.state.player2Moves}
                     />
                 ))}
             </div>

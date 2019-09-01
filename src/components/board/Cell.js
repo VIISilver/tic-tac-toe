@@ -4,21 +4,16 @@ import './Cell.css'
 export default class Cell extends Component {
     render() {
 
-        const {rowVal, movesValuesRow} = this.props
-
-        let handleClick = () => {
-            console.log(this.props.boardValuesRow[this.props.rowVal])
-        }
+        const {rowVal, player1MovesCell, player2MovesCell} = this.props
 
         return (
             <Fragment>
-                <button 
+                <input
                 id={rowVal}
-                onMouseEnter={this.props.hoverInfoRow}
-                onClick={handleClick}
-                >
-                    {movesValuesRow.player1Moves.includes(rowVal) ? 'X' : movesValuesRow.player2Moves.includes(rowVal) ? 'O' : ''}
-                </button>
+                onClick={this.props.hoverInfoCell}
+                value={player1MovesCell.includes(rowVal) ? 'X' : player2MovesCell.includes(rowVal) ? 'O' : ''}
+                readOnly
+                />
             </Fragment>
         )
     }
