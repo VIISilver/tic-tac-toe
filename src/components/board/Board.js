@@ -14,6 +14,18 @@ export default class Board extends Component {
 
     rowArr = [1, 2, 3]
 
+    victoryCheck = () => {
+        let player1numbers = this.state.player1Moves.map(item => item[1])
+        let player2numbers = this.state.player2Moves.map(item => item[1])
+        // if (this.state.player1Moves.filter(item => item.includes('1')) && this.state.player1Moves.filter(item => item.includes('2')) && this.state.player1Moves.filter(item => item.includes('3'))) {
+        //     alert('X Wins!!')
+        // } else if (this.state.player2Moves.filter(item => item.includes('1')) && this.state.player2Moves.filter(item => item.includes('2')) && this.state.player2Moves.filter(item => item.includes('3'))) {
+        //     alert('O Wins!!')
+        // }
+        console.log(player1numbers)
+        console.log(player1numbers.includes('1'))
+    }
+
     handleOnClick = (e) => {
         let square = e.target.id
         if (this.state.player1Moves.includes(square) || this.state.player2Moves.includes(square)) {
@@ -31,6 +43,7 @@ export default class Board extends Component {
                 })
             }
         }
+        setTimeout(this.victoryCheck(), 1000)
     }
 
     render() {
