@@ -10,7 +10,7 @@ export default class Cell extends Component {
             <Fragment>
                 <input
                 id={rowVal}
-                onClick={this.props.hoverInfoCell}
+                onClick={this.props.clickMoveCell}
                 value={player1MovesCell.includes(rowVal) ? 'X' : player2MovesCell.includes(rowVal) ? 'O' : ''}
                 readOnly
                 />

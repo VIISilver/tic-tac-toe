@@ -15,7 +15,7 @@ export default class Row extends Component {
                     <Cell
                     key={key}
                     rowVal={`${item}${this.props.boardVal}`}
-                    hoverInfoCell={this.props.hoverInfoRow}
+                    clickMoveCell={this.props.clickMoveRow}
                     movesValuesRow={this.props.movesValuesBoard}
                     player1MovesCell={this.props.player1MovesRow}
                     player2MovesCell={this.props.player2MovesRow}

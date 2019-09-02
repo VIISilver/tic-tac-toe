@@ -16,16 +16,20 @@ export default class Board extends Component {
 
     handleOnClick = (e) => {
         let square = e.target.id
-        if (this.state.player1Turn) {
-            this.setState({
-                player1Turn: !this.state.player1Turn,
-                player1Moves: this.state.player1Moves.concat(square)
-            })
+        if (this.state.player1Moves.includes(square) || this.state.player2Moves.includes(square)) {
+            return alert('Please select a different Cell')
         } else {
-            this.setState({
-                player1Turn: !this.state.player1Turn,
-                player2Moves: this.state.player2Moves.concat(square)
-            })
+            if (this.state.player1Turn) {
+                this.setState({
+                    player1Turn: !this.state.player1Turn,
+                    player1Moves: this.state.player1Moves.concat(square)
+                })
+            } else {
+                this.setState({
+                    player1Turn: !this.state.player1Turn,
+                    player2Moves: this.state.player2Moves.concat(square)
+                })
+            }
         }
     }
 
@@ -38,7 +42,7 @@ export default class Board extends Component {
                     <Row
                     key={key}
                     boardVal={item}
-                    hoverInfoRow={this.handleOnClick}
+                    clickMoveRow={this.handleOnClick}
                     player1MovesRow={this.state.player1Moves}
                     player2MovesRow={this.state.player2Moves}
                     />
