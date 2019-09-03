@@ -14,19 +14,23 @@ export default class Board extends Component {
 
     rowArr = [1, 2, 3]
 
-    victoryCheck = () => {
-        let player1numbers = this.state.player1Moves.map(item => item[1])
-        let player2numbers = this.state.player2Moves.map(item => item[1])
-        // if (this.state.player1Moves.filter(item => item.includes('1')) && this.state.player1Moves.filter(item => item.includes('2')) && this.state.player1Moves.filter(item => item.includes('3'))) {
-        //     alert('X Wins!!')
-        // } else if (this.state.player2Moves.filter(item => item.includes('1')) && this.state.player2Moves.filter(item => item.includes('2')) && this.state.player2Moves.filter(item => item.includes('3'))) {
-        //     alert('O Wins!!')
-        // }
+    victoryCheck = (cellId, playerTurn) => {
+        // let player1Arr = this.state.player1Moves
+        // let player2Arr = this.state.player2Moves
+        // let player1Added = playerTurn ? player1Arr.concat(cellId) : player1Arr
+        // let player2Added = !playerTurn ? player2Arr.concat(cellId) : player2Arr
+        let player1numbers = this.state.player1Moves.map(item => item[1]).sort().join('')
+        let player2numbers = this.state.player2Moves.map(item => item[1]).sort().join('')
+
+        if (player1numbers.includes('123') || player1numbers.includes('111') || player1numbers.includes('222') || player1numbers.includes('333')) {
+            alert('X Wins!!')
+        } else if (player2numbers.includes('123') || player2numbers.includes('111') || player2numbers.includes('222') || player2numbers.includes('333')) {
+            alert('O Wins!!')
+        }
         console.log(player1numbers)
-        console.log(player1numbers.includes('1'))
     }
 
-    handleOnClick = (e) => {
+    handleOnClick = (e, playerTurn) => {
         let square = e.target.id
         if (this.state.player1Moves.includes(square) || this.state.player2Moves.includes(square)) {
             return alert('Please select a different Cell')
@@ -35,15 +39,18 @@ export default class Board extends Component {
                 this.setState({
                     player1Turn: !this.state.player1Turn,
                     player1Moves: this.state.player1Moves.concat(square)
+                }, () => {
+                    this.victoryCheck(e, playerTurn)
                 })
             } else {
                 this.setState({
                     player1Turn: !this.state.player1Turn,
                     player2Moves: this.state.player2Moves.concat(square)
+                }, () => {
+                    this.victoryCheck(e, playerTurn)
                 })
             }
         }
-        setTimeout(this.victoryCheck(), 1000)
     }
 
     render() {
@@ -54,7 +61,7 @@ export default class Board extends Component {
                 {this.rowArr.map((item, key) => (
                     <Row
                     key={key}
-                    boardVal={item}
+                    rowVal={item}
                     clickMoveRow={this.handleOnClick}
                     player1MovesRow={this.state.player1Moves}
                     player2MovesRow={this.state.player2Moves}
