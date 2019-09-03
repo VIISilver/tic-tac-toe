@@ -10,10 +10,10 @@ export default class Cell extends Component {
             <Fragment>
                 <input
                 id={cellVal}
-                readOnly
                 onClick={this.props.clickMoveCell}
                 value={player1MovesCell.includes(cellVal) ? 'X' : player2MovesCell.includes(cellVal) ? 'O' : ''}
                 // value={cellVal}
+                readOnly
                 />
             </Fragment>
         )

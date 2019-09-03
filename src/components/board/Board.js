@@ -8,29 +8,33 @@ export default class Board extends Component {
         this.state = {
             player1Turn: true,
             player1Moves: [],
-            player2Moves: []
+            player2Moves: [],
+            xWinsH1: false,
+            oWinsH1: false
         }
     }
 
     rowArr = [1, 2, 3]
 
-    victoryCheck = (cellId, playerTurn) => {
-        // let player1Arr = this.state.player1Moves
-        // let player2Arr = this.state.player2Moves
-        // let player1Added = playerTurn ? player1Arr.concat(cellId) : player1Arr
-        // let player2Added = !playerTurn ? player2Arr.concat(cellId) : player2Arr
-        let player1numbers = this.state.player1Moves.map(item => item[1]).sort().join('')
-        let player2numbers = this.state.player2Moves.map(item => item[1]).sort().join('')
+    victoryCheck = () => {
+        let vertHorizontalWin = ['111', '222', '333', 'aaa', 'bbb', 'ccc']
+        let topLeftDownWin = ['a1', 'b2', 'c3']
+        let bottomLeftUpWin = ['a3', 'b2', 'c1']
 
-        if (player1numbers.includes('123') || player1numbers.includes('111') || player1numbers.includes('222') || player1numbers.includes('333')) {
-            alert('X Wins!!')
-        } else if (player2numbers.includes('123') || player2numbers.includes('111') || player2numbers.includes('222') || player2numbers.includes('333')) {
-            alert('O Wins!!')
+        let player1Numbers = this.state.player1Moves.map(item => item[1]).sort().join('').concat(this.state.player1Moves.map(item => item[0]).sort().join(''))
+        let player1AlphaNum = this.state.player1Moves.sort().join('')
+
+        let player2Numbers = this.state.player2Moves.map(item => item[1]).sort().join('').concat(this.state.player2Moves.map(item => item[0]).sort().join(''))
+        let player2AlphaNum = this.state.player2Moves.sort().join('')
+
+        if (vertHorizontalWin.map(item => player1Numbers.includes(item)).includes(true) || !topLeftDownWin.map(item => player1AlphaNum.includes(item)).includes(false) || !bottomLeftUpWin.map(item => player1AlphaNum.includes(item)).includes(false)) {
+            this.setState({ xWinsH1: true })
+        } else if (vertHorizontalWin.map(item => player2Numbers.includes(item)).includes(true) || !topLeftDownWin.map(item => player2AlphaNum.includes(item)).includes(false) || !bottomLeftUpWin.map(item => player2AlphaNum.includes(item)).includes(false)) {
+            this.setState({ oWinsH1: true })
         }
-        console.log(player1numbers)
     }
 
-    handleOnClick = (e, playerTurn) => {
+    handleOnClick = (e) => {
         let square = e.target.id
         if (this.state.player1Moves.includes(square) || this.state.player2Moves.includes(square)) {
             return alert('Please select a different Cell')
@@ -40,14 +44,14 @@ export default class Board extends Component {
                     player1Turn: !this.state.player1Turn,
                     player1Moves: this.state.player1Moves.concat(square)
                 }, () => {
-                    this.victoryCheck(e, playerTurn)
+                    this.victoryCheck()
                 })
             } else {
                 this.setState({
                     player1Turn: !this.state.player1Turn,
                     player2Moves: this.state.player2Moves.concat(square)
                 }, () => {
-                    this.victoryCheck(e, playerTurn)
+                    this.victoryCheck()
                 })
             }
         }
@@ -57,14 +61,16 @@ export default class Board extends Component {
 
         return (
             <div className='board-wrap'>
-                <h1>Tic-React-Toe</h1>
+                <h1 style={{ display: this.state.xWinsH1 || this.state.oWinsH1 ? 'none' : 'block' }}>Tic-React-Toe</h1>
+                <h1 style={{ display: this.state.xWinsH1 ? 'block' : 'none', color: 'red' }}>X Wins!!</h1>
+                <h1 style={{ display: this.state.oWinsH1 ? 'block' : 'none', color: 'red' }}>O Wins!!</h1>
                 {this.rowArr.map((item, key) => (
                     <Row
-                    key={key}
-                    rowVal={item}
-                    clickMoveRow={this.handleOnClick}
-                    player1MovesRow={this.state.player1Moves}
-                    player2MovesRow={this.state.player2Moves}
+                        key={key}
+                        rowVal={item}
+                        clickMoveRow={this.handleOnClick}
+                        player1MovesRow={this.state.player1Moves}
+                        player2MovesRow={this.state.player2Moves}
                     />
                 ))}
             </div>

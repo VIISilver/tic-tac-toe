@@ -10,11 +10,11 @@ export default class Row extends Component {
 
         return (
             <div className='row-wrap'>
-                {/* <button>{this.props.boardVal}</button> */}
+                {/* <button>{this.props.rowVal}</button> */}
                 {this.cellArr.map((item, key) => (
                     <Cell
                     key={key}
-                    cellVal={`${item}${this.props.boardVal}`}
+                    cellVal={`${item}${this.props.rowVal}`}
                     clickMoveCell={this.props.clickMoveRow}
                     player1MovesCell={this.props.player1MovesRow}
                     player2MovesCell={this.props.player2MovesRow}
