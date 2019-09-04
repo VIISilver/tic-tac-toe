@@ -27,15 +27,20 @@ export default class Board extends Component {
         let player2Numbers = this.state.player2Moves.map(item => item[1]).sort().join('').concat(this.state.player2Moves.map(item => item[0]).sort().join(''))
         let player2AlphaNum = this.state.player2Moves.sort().join('')
 
-        if (vertHorizontalWin.map(item => player1Numbers.includes(item)).includes(true) || !topLeftDownWin.map(item => player1AlphaNum.includes(item)).includes(false) || !bottomLeftUpWin.map(item => player1AlphaNum.includes(item)).includes(false)) {
+        if (vertHorizontalWin.map(item => player1Numbers.includes(item)).includes(true) || 
+        !topLeftDownWin.map(item => player1AlphaNum.includes(item)).includes(false) || !bottomLeftUpWin.map(item => player1AlphaNum.includes(item)).includes(false)) {
             this.setState({ xWinsH1: true })
         } else if (vertHorizontalWin.map(item => player2Numbers.includes(item)).includes(true) || !topLeftDownWin.map(item => player2AlphaNum.includes(item)).includes(false) || !bottomLeftUpWin.map(item => player2AlphaNum.includes(item)).includes(false)) {
             this.setState({ oWinsH1: true })
         }
+
     }
 
     handleOnClick = (e) => {
         let square = e.target.id
+        if (this.state.xWinsH1 || this.state.oWinsH1) {
+            return
+        }
         if (this.state.player1Moves.includes(square) || this.state.player2Moves.includes(square)) {
             return alert('Please select a different Cell')
         } else {
@@ -61,6 +66,7 @@ export default class Board extends Component {
 
         return (
             <div className='board-wrap'>
+                {/* <h1>Tic-React-Toe</h1> */}
                 <h1 style={{ display: this.state.xWinsH1 || this.state.oWinsH1 ? 'none' : 'block' }}>Tic-React-Toe</h1>
                 <h1 style={{ display: this.state.xWinsH1 ? 'block' : 'none', color: 'red' }}>X Wins!!</h1>
                 <h1 style={{ display: this.state.oWinsH1 ? 'block' : 'none', color: 'red' }}>O Wins!!</h1>

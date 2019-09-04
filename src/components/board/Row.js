@@ -1,26 +1,26 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Cell from './Cell'
 import './Row.css'
 
-export default class Row extends Component {
+export default function Row(props) {
 
-    cellArr = ['a', 'b', 'c']
 
-    render() {
+    const {rowVal, clickMoveRow, player1MovesRow, player2MovesRow} = props
 
-        return (
-            <div className='row-wrap'>
-                {/* <button>{this.props.rowVal}</button> */}
-                {this.cellArr.map((item, key) => (
-                    <Cell
-                    key={key}
-                    cellVal={`${item}${this.props.rowVal}`}
-                    clickMoveCell={this.props.clickMoveRow}
-                    player1MovesCell={this.props.player1MovesRow}
-                    player2MovesCell={this.props.player2MovesRow}
-                    />
-                ))}
-            </div>
-        )
-    }
+    const cellArr = ['a', 'b', 'c']
+
+    return (
+        <div className='row-wrap'>
+            {cellArr.map((item, key) => (
+                <Cell
+                key={key}
+                cellVal={`${item}${rowVal}`}
+                clickMoveCell={clickMoveRow}
+                player1MovesCell={player1MovesRow}
+                player2MovesCell={player2MovesRow}
+                />
+            ))}
+        </div>
+    )
+
 }
