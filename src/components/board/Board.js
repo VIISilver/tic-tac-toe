@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Row from './Row'
+import VictoryModal from '../victoryModal/VictoryModal'
 import './Board.css'
 
 export default class Board extends Component {
@@ -10,7 +11,8 @@ export default class Board extends Component {
             player1Moves: [],
             player2Moves: [],
             xWinsH1: false,
-            oWinsH1: false
+            oWinsH1: false,
+            victoryModal: false
         }
     }
 
@@ -29,9 +31,9 @@ export default class Board extends Component {
 
         if (vertHorizontalWin.map(item => player1Numbers.includes(item)).includes(true) || 
         !topLeftDownWin.map(item => player1AlphaNum.includes(item)).includes(false) || !bottomLeftUpWin.map(item => player1AlphaNum.includes(item)).includes(false)) {
-            this.setState({ xWinsH1: true })
+            this.setState({ xWinsH1: true, victoryModal: true })
         } else if (vertHorizontalWin.map(item => player2Numbers.includes(item)).includes(true) || !topLeftDownWin.map(item => player2AlphaNum.includes(item)).includes(false) || !bottomLeftUpWin.map(item => player2AlphaNum.includes(item)).includes(false)) {
-            this.setState({ oWinsH1: true })
+            this.setState({ oWinsH1: true, victoryModal: true })
         }
 
     }
@@ -62,10 +64,28 @@ export default class Board extends Component {
         }
     }
 
+    victoryModalClose = () => {
+        this.setState({
+            player1Turn: true,
+            player1Moves: [],
+            player2Moves: [],
+            xWinsH1: false,
+            oWinsH1: false,
+            victoryModal: false
+        })
+
+    }
+
     render() {
 
         return (
             <div className='board-wrap'>
+                <VictoryModal
+                victoryDisplayVal={this.state.victoryModal ? 'block' : 'none'}
+                victoryText={this.state.xWinsH1 ? 'X Wins!!!' : 'O Wins!!!'}
+                victoryCloseClick={this.victoryModalClose}
+                />
+
                 {/* <h1>Tic-React-Toe</h1> */}
                 <h1 style={{ display: this.state.xWinsH1 || this.state.oWinsH1 ? 'none' : 'block' }}>Tic-React-Toe</h1>
                 <h1 style={{ display: this.state.xWinsH1 ? 'block' : 'none', color: 'red' }}>X Wins!!</h1>
@@ -79,6 +99,7 @@ export default class Board extends Component {
                         player2MovesRow={this.state.player2Moves}
                     />
                 ))}
+                <p>Built by <a href='http://jaredparker.logixexpert.com/'>Jared Parker</a></p>
             </div>
         )
     }

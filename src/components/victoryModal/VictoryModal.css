@@ -1,0 +1,24 @@
+.victory-wrap {
+    position: fixed;
+    background-color: #c3c7c9;
+    color: white;
+    width: 28em;
+    height: 6em;
+    top: 3%;
+    left: 50%;
+    margin-top: -1em; /* Negative half of height. */
+    margin-left: -14em;
+    border-radius: .2em;
+}
+
+.victory-wrap > button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1em;
+    border-radius: .2em;
+    background-color: white;
+    border: none;
+    color: #c3c7c9;
+    cursor: pointer;
+}

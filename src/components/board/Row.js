@@ -4,7 +4,6 @@ import './Row.css'
 
 export default function Row(props) {
 
-
     const {rowVal, clickMoveRow, player1MovesRow, player2MovesRow} = props
 
     const cellArr = ['a', 'b', 'c']
@@ -22,5 +21,4 @@ export default function Row(props) {
             ))}
         </div>
     )
-
 }
