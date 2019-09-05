@@ -86,10 +86,8 @@ export default class Board extends Component {
                 victoryCloseClick={this.victoryModalClose}
                 />
 
-                {/* <h1>Tic-React-Toe</h1> */}
-                <h1 style={{ display: this.state.xWinsH1 || this.state.oWinsH1 ? 'none' : 'block' }}>Tic-React-Toe</h1>
-                <h1 style={{ display: this.state.xWinsH1 ? 'block' : 'none', color: 'red' }}>X Wins!!</h1>
-                <h1 style={{ display: this.state.oWinsH1 ? 'block' : 'none', color: 'red' }}>O Wins!!</h1>
+                <h1>Tic-React-Toe</h1>
+                <h1 className='turn-indicator'><span style={{color: this.state.player1Turn ? '#33a532' : '#cc0605'}}>X</span>&nbsp;&nbsp;&nbsp;<span style={{color: !this.state.player1Turn ? '#33a532' : '#cc0605'}}>O</span></h1>
                 {this.rowArr.map((item, key) => (
                     <Row
                         key={key}
