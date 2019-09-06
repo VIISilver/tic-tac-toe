@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Row from './Row'
 import VictoryModal from '../victoryModal/VictoryModal'
+import CatModal from '../catModal/CatModal'
 import './Board.css'
 
 export default class Board extends Component {
@@ -12,7 +13,8 @@ export default class Board extends Component {
             player2Moves: [],
             xWinsH1: false,
             oWinsH1: false,
-            victoryModal: false
+            draw: false,
+            victoryModal: false,
         }
     }
 
@@ -34,6 +36,10 @@ export default class Board extends Component {
             this.setState({ xWinsH1: true, victoryModal: true })
         } else if (vertHorizontalWin.map(item => player2Numbers.includes(item)).includes(true) || !topLeftDownWin.map(item => player2AlphaNum.includes(item)).includes(false) || !bottomLeftUpWin.map(item => player2AlphaNum.includes(item)).includes(false)) {
             this.setState({ oWinsH1: true, victoryModal: true })
+        }
+
+        if (this.state.player1Moves.concat(this.state.player2Moves).length === 9 && !(this.state.xWinsH1 && this.state.oWinsH1)) {
+            this.setState({ draw: true })
         }
 
     }
@@ -71,6 +77,7 @@ export default class Board extends Component {
             player2Moves: [],
             xWinsH1: false,
             oWinsH1: false,
+            draw: false,
             victoryModal: false
         })
 
@@ -85,9 +92,14 @@ export default class Board extends Component {
                 victoryText={this.state.xWinsH1 ? 'X Wins!!!' : 'O Wins!!!'}
                 victoryCloseClick={this.victoryModalClose}
                 />
+                <CatModal
+                catDisplayVal={this.state.draw ? 'block' : 'none'}
+                catText={'It\'s a cat!!!'}
+                catCloseClick={this.victoryModalClose}
+                />
 
                 <h1>Tic-React-Toe</h1>
-                <h1 className='turn-indicator'><span style={{color: this.state.player1Turn ? '#33a532' : '#cc0605'}}>X</span>&nbsp;&nbsp;&nbsp;<span style={{color: !this.state.player1Turn ? '#33a532' : '#cc0605'}}>O</span></h1>
+                <h1 className='turn-indicator'><span style={{color: this.state.player1Turn ? '#000000' : '#ebeff5'}}>X</span>&nbsp;&nbsp;&nbsp;<span style={{color: !this.state.player1Turn ? '#000000' : '#ebeff5'}}>O</span></h1>
                 {this.rowArr.map((item, key) => (
                     <Row
                         key={key}
