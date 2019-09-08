@@ -11,7 +11,6 @@ export default function Cell(props) {
             id={cellVal}
             onClick={clickMoveCell}
             value={player1MovesCell.includes(cellVal) ? 'X' : player2MovesCell.includes(cellVal) ? 'O' : ''}
-            // value={cellVal}
             readOnly
             />
         </Fragment>

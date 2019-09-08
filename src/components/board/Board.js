@@ -97,7 +97,6 @@ export default class Board extends Component {
                 catText={'It\'s a cat!!!'}
                 catCloseClick={this.victoryModalClose}
                 />
-
                 <h1>Tic-React-Toe</h1>
                 <h1 className='turn-indicator'><span style={{color: this.state.player1Turn ? '#000000' : '#ebeff5'}}>X</span>&nbsp;&nbsp;&nbsp;<span style={{color: !this.state.player1Turn ? '#000000' : '#ebeff5'}}>O</span></h1>
                 {this.rowArr.map((item, key) => (

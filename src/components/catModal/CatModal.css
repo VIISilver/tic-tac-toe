@@ -11,14 +11,9 @@
     padding-bottom: 1.5em;
 }
 
-.cat-wrap > button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 1em;
-    border-radius: .2em;
-    background-color: white;
-    border: none;
-    color: #c3c7c9;
-    cursor: pointer;
+@media (max-width: 570px) {
+    .cat-wrap {
+        width: 20em;
+        margin-left: -10em;
+    }
 }
