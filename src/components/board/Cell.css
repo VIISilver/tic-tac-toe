@@ -8,6 +8,7 @@ input {
 
 @media (max-width: 570px) and (min-width: 401px) {
     input {
+        font-size: 3.5rem;
         height: 1.5em;
         width: 1.5em;
     }
@@ -15,6 +16,7 @@ input {
 
 @media (max-width: 400px) {
     input {
+        font-size: 3.4rem;
         height: 1.1em;
         width: 1.1em;
     }
