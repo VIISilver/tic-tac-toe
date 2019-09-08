@@ -11,9 +11,16 @@
     padding-bottom: 1.5em;
 }
 
-@media (max-width: 570px) {
+@media (max-width: 570px) and (min-width: 401px) {
     .cat-wrap {
         width: 20em;
         margin-left: -10em;
+    }
+}
+
+@media (max-width: 400px) {
+    .cat-wrap {
+        width: 14em;
+        margin-left: -7em;
     }
 }

@@ -6,9 +6,16 @@ input {
     text-align: center;
 }
 
-@media (max-width: 570px) {
+@media (max-width: 570px) and (min-width: 401px) {
     input {
         height: 1.5em;
         width: 1.5em;
+    }
+}
+
+@media (max-width: 400px) {
+    input {
+        height: 1.1em;
+        width: 1.1em;
     }
 }
