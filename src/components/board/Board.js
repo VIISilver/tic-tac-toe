@@ -38,6 +38,9 @@ export default class Board extends Component {
             this.setState({ oWinsH1: true, victoryModal: true })
         }
 
+    }
+
+    catCheck = () => {
         if (this.state.player1Moves.concat(this.state.player2Moves).length === 9 && !(this.state.xWinsH1 && this.state.oWinsH1)) {
             this.setState({ draw: true })
         }
@@ -58,6 +61,8 @@ export default class Board extends Component {
                     player1Moves: this.state.player1Moves.concat(square)
                 }, () => {
                     this.victoryCheck()
+                }, () => {
+                    this.catCheck()
                 })
             } else {
                 this.setState({
@@ -65,6 +70,8 @@ export default class Board extends Component {
                     player2Moves: this.state.player2Moves.concat(square)
                 }, () => {
                     this.victoryCheck()
+                }, () => {
+                    this.catCheck()
                 })
             }
         }
