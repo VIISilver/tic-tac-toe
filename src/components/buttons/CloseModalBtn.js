@@ -4,7 +4,7 @@ import './CloseModalBtn.css'
 export default function CloseModalBtn(props) {
     return (
         <Fragment>
-            <button onClick={props.componentCloseClick}>X</button>
+            <button onClick={props.componentCloseClick}>&times;</button>
         </Fragment>
     )
 }
